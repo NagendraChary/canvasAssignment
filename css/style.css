@@ -1,0 +1,78 @@
+#parent_container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+#toolcontainer {
+    height: 550px;
+    width: 800px;
+    position: absolute;
+    top: 25px;
+    border: 1px solid #333333;
+    left: 20px;
+}
+#header_block {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-bottom: 1px solid #333333;
+    height: 50px;
+    width: 100%;
+}
+.clickable_elements {
+    height: 100%;
+    width: 110px;
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    line-height: 50px;
+    margin-right: 25px;
+    border-right: 1px solid #333333;
+    border-left: 1px solid #333333;
+    padding-left: 15px;
+    font-weight: 500;
+    font-family: Arial;
+    font-size: 20px;
+    background-color: #cfe2f3;
+    color: #000;
+    cursor: pointer;
+}
+#chartbox {
+    position: relative;
+    height: 500px;
+    width: 100%;
+}
+#chartarea {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    cursor: crosshair;
+}
+#circle {} #square {} #line {} #clear {} #Flowdiagramtext {
+    position: absolute;
+    top: 320px;
+    left: 180px;
+    font-size: 22px;
+    font-family: arial;
+    color: rgba(0, 0, 0, 1);
+}
+#chartareatext {
+    position: absolute;
+    top: 40px;
+    left: 660px;
+    font-size: 16px;
+    font-family: arial;
+    color: rgba(0, 0, 0, 1);
+}
+#redo,
+#undo {
+    width: 55px;
+    font-size: 15px;
+    text-align: center;
+    padding-left: 0px;
+    line-height: 53px;
+}
+.disabled {
+    opacity: 0.5;
+    cursor: default !important;
+}
