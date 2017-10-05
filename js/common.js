@@ -1,6 +1,7 @@
 /* document ready function */
 $(document).ready(function() {
-    var clickedshape, lastchildelement;
+    var clickedshape, lastchildelement = [],
+        lstelem = [];
     var svgshapeholder = document.getElementById("chartarea");
     var svgHolder = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svgHolder.setAttribute('id', "svgObj");
@@ -33,7 +34,8 @@ $(document).ready(function() {
                 console.log("select the shape");
                 break;
         }
-        lastchildelement = svgHolder.lastChild;
+
+
         if ($("#svgObj").children().length > 0) {
             $("#undo").removeClass("disabled");
             $("#clear").removeClass("disabled");
@@ -48,29 +50,46 @@ $(document).ready(function() {
         if (!$(this).hasClass("disabled")) {
             if (svgHolder != null) {
                 $("#svgObj").html("");
-                $("#undo").addClass("disabled");
+                $("#undo,#redo").addClass("disabled");
+				$(this).addClass("disabled");
+				clickedshape = "";
             }
         }
     });
     $("#undo").unbind("click").bind("click", function() {
         if (!$(this).hasClass("disabled")) {
+            lastchildelement = $("#svgObj").children().last();
+            lstelem.push(lastchildelement[0]);
+
             if (svgHolder != null) {
                 if ($("#svgObj").children().length > 0) {
-                    svgHolder.removeChild(lastchildelement);
+                    svgHolder.removeChild(lastchildelement[0]);
                 }
-            } else {
+            }
+            if (($("#svgObj").children().length - 1) <= -1) {
                 $(this).addClass("disabled");
             }
             $("#redo").removeClass("disabled");
         }
+        //console.log(lstelem)
 
     });
     $("#redo").unbind("click").bind("click", function() {
+        //console.log(lstelem)
         if (!$(this).hasClass("disabled")) {
             if (svgHolder != null) {
-                svgHolder.appendChild(lastchildelement);
+                if (lstelem.length <= 0) {
+                    $(this).addClass("disabled");
+                } else {
+                    svgHolder.appendChild(lstelem[lstelem.length - 1]);
+                    lstelem.pop(lstelem.length - 1);
+                }
+                if (lstelem.length <= 0) {
+                    $("#redo").addClass("disabled");
+                }
+
             }
-            $(this).addClass("disabled");
+            $("#undo").removeClass("disabled");
         }
     });
 });
